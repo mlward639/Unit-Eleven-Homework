@@ -104,4 +104,7 @@ dist
 .tern-port
 
 # addl
-.README_copy.md
+../README_copy.md
+../assets/images/11-express-homework-demo-01.png
+../Assets/images/11-express-homework-demo-02.png
+
