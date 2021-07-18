@@ -16,10 +16,10 @@ module.exports = function(app){
         newNote.id = uuidv4(); 
         console.log('new note', newNote);
         //access db.json array, push new note to that, then write new updated array back to db.json
-        let savedNotes = JSON.parse(fs.readFileSync('../db/db.json'));
+        let savedNotes = JSON.parse(fs.readFileSync('db/db.json'));
         console.log("Anything");
         savedNotes.push(newNote);
-        fs.writeFileSync('../db/db.json', JSON.stringify(savedNotes));
+        fs.writeFileSync('db/db.json', JSON.stringify(savedNotes));
         res.json(newNote);
     });
 }
