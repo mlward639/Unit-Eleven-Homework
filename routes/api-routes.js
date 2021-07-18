@@ -17,6 +17,7 @@ module.exports = function(app){
         console.log('new note', newNote);
         //access db.json array, push new note to that, then write new updated array back to db.json
         res.json(newNote);
+        console.log("Anything")
         let savedNotes = JSON.parse(fs.readFileSync('./db/db.json'));
         savedNotes.push(newNote);
         fs.writeFileSync('./db/db.json', JSON.stringify(savedNotes));
