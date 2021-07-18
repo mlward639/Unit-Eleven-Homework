@@ -38,9 +38,9 @@ module.exports = function(app){
             if (id === savedNotes[i].id) {
                 savedNotes.splice(i, 1);
                 fs.writeFileSync('db/db.json', JSON.stringify(savedNotes));
+                res.json(savedNotes); //why do i have to click refresh here
                 };
             };
-        res.json(savedNotes); //why do i have to click refresh here
         });
 }
 
