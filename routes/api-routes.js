@@ -16,26 +16,24 @@ module.exports = function(app){
         newNote.id = uuidv4(); 
         console.log('new note', newNote);
         //access db.json array, push new note to that, then write new updated array back to db.json
-        let savedNotes = JSON.parse(fs.readFileSync('db/db.json'));
-        console.log("Anything");
-        console.log('before', savedNotes);
+        async function postNotes() {
+            let myPromise = new Promise(function(resolve, reject) {
+                let savedNotes = JSON.parse(fs.readFileSync('db/db.json'));
+                savedNotes.push(newNote);
+            });
+            fs.writeFileSync('db/db.json', JSON.stringify(savedNotes)) = await myPromise;
+            res.json(newNote);
+        }
+        /* let savedNotes = JSON.parse(fs.readFileSync('db/db.json'));
+        //console.log("Anything");
+        //console.log('before', savedNotes);
         savedNotes.push(newNote);
-        console.log('after', savedNotes);
+        //console.log('after', savedNotes);
         fs.writeFileSync('db/db.json', JSON.stringify(savedNotes));
-        res.json(newNote);
+        res.json(newNote); */
     });
 }
-/*:19
-The only other thing I can think of trying right now...
-white_check_mark
-eyes
-raised_hands
-
-
-
-
-
-2:20
+/*
 Maybe separate the fs.readFileSync and fs.writeFileSync into their own async functions
 2:20
 Then use await when you call those functions
