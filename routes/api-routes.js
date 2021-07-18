@@ -32,8 +32,15 @@ module.exports = function(app){
     
     // set up api/notes delete route based on specific id
     app.delete('/api/notes/:id', (req, res) => {
-        const { id } = req.params.id;
-        savedNotes.splice(id, 1);
-        fs.writeFileSync('db/db.json', JSON.stringify(savedNotes));
+        let savedNotes = JSON.parse(fs.readFileSync('db/db.json'));
+        const id = req.params.id;
+        for (let i=0; i<savedNotes.length; i++) {
+            if (id === savedNotes[i].id) {
+                savedNotes.splice(i, 1);
+                fs.writeFileSync('db/db.json', JSON.stringify(savedNotes));
+                };
+            };
+        res.json(savedNotes); //why do i have to click refresh here
         });
-    }
+}
+
