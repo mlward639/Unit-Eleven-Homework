@@ -1,7 +1,8 @@
-The application should have a `db.json` file on the back end that will be used to store and retrieve notes using the `fs` module.
+const path = require("path");
 
-The following HTML routes should be created:
+// HTML routes
+module.exports = function(app){
+    app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../public/index.html')));
 
-* `GET /notes` should return the `notes.html` file.
-
-* `GET *` should return the `index.html` file.
+    app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, '../public/notes.html')));
+}
