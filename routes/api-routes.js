@@ -9,30 +9,31 @@ const app = express();
 app.use(express.static('db'));
 
 module.exports = function(app){
+    // set up api/notes get route
     app.get('/api/notes', (req, res) => res.json(notes));
 
+    // set up api/notes post route
     app.post('/api/notes', (req, res) => {
         const newNote = req.body;
         newNote.id = uuidv4(); 
         console.log('new note', newNote);
         //access db.json array, push new note to that, then write new updated array back to db.json
-        async function postNotes() {
-            let myPromise = new Promise(function(resolve, reject) {
-                let savedNotes = JSON.parse(fs.readFileSync('db/db.json'));
-                savedNotes.push(newNote);
-            });
-            fs.writeFileSync('db/db.json', JSON.stringify(savedNotes)) = await myPromise;
-            res.json(newNote);
-        }
-        /* let savedNotes = JSON.parse(fs.readFileSync('db/db.json'));
+        let savedNotes = JSON.parse(fs.readFileSync('db/db.json'));
         //console.log("Anything");
         //console.log('before', savedNotes);
         savedNotes.push(newNote);
         //console.log('after', savedNotes);
         fs.writeFileSync('db/db.json', JSON.stringify(savedNotes));
-        res.json(newNote); */
+        res.json(newNote);
     });
-}
+    // set up api/notes delete route based on specific id
+    app.delete('/api/notes/:id', (req, res) => {
+        let savedNotes = JSON.parse(fs.readFileSync('db/db.json'));
+        const { id } = req.params.id;
+        savedNotes.splice(id, 1);
+        fs.writeFileSync('db/db.json', JSON.stringify(savedNotes));
+        });
+    }
 /*
 Maybe separate the fs.readFileSync and fs.writeFileSync into their own async functions
 2:20
