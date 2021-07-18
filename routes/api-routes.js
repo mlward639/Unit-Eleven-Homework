@@ -17,10 +17,10 @@ module.exports = function(app){
         console.log('new note', newNote);
         //access db.json array, push new note to that, then write new updated array back to db.json
         let savedNotes = JSON.parse(fs.readFileSync('./db/db.json'));
+        console.log("Anything");
         savedNotes.push(newNote);
         fs.writeFileSync('./db/db.json', JSON.stringify(savedNotes));
         res.json(newNote);
-        console.log("Anything");
     });
 }
 /* `POST /api/notes` should receive a new note to save on the request body, add it to the `db.json` file, and then return the new note to the client. You'll need to find a way to give each note a unique id when it's saved (look into `npm` packages that could do this for you). */
