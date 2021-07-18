@@ -3,7 +3,7 @@
 // Get dependencies
 const path = require("path");
 const {v4 : uuidv4} = require('uuid');
-const notes = require('../db/db.json');
+//const notes = require('../db/db.json');
 const fs = require('fs');
 const express = require('express');
 const app = express();
@@ -12,7 +12,11 @@ const app = express();
 
 module.exports = function(app){
     // set up api/notes get route
-    app.get('/api/notes', (req, res) => res.json(require('../db/db.json')));
+    app.get('/api/notes', (req, res) => {
+        let notes = JSON.parse(fs.readFileSync('db/db.json'));
+        console.log(notes);
+        res.json(notes)        
+    });
 
     // set up api/notes post route
     app.post('/api/notes', (req, res) => {
@@ -28,6 +32,7 @@ module.exports = function(app){
         fs.writeFileSync('db/db.json', JSON.stringify(savedNotes));
         res.json(newNote);
     });
+    
     // set up api/notes delete route based on specific id
     app.delete('/api/notes/:id', (req, res) => {
         let savedNotes = JSON.parse(fs.readFileSync('db/db.json'));
