@@ -48,16 +48,16 @@ Source for licensing information: <a href="https://opensource.org/licenses/MIT">
 ## Screenshots
 
 Screenshot of Note Taker application on load:
-<img src='./Develop/images/screenshot-main-html.png' alt = 'main page note taker app'>
+<img src='./images/screenshot-main-html.png' alt = 'main page note taker app'>
 
 Screenshot of the notes page of Note Taker application:
-<img src='./Develop/images/screenshot-blank-notes-html.png' alt = 'notes page of the note taker app'>
+<img src='./images/screenshot-blank-notes-html.png' alt = 'notes page of the note taker app'>
 
 Screenshot of notes page of Note Taker application with saved notes:
-<img src='./Develop/images/screenshot-saved-notes-html.png' alt = 'saved notes on teh notes page of the note taker app'>
+<img src='./images/screenshot-saved-notes-html.png' alt = 'saved notes on teh notes page of the note taker app'>
 
 
 ## URLs
 <a href="https://github.com/mlward639/Unit-Eleven-Homework">Link to GitHub Repository</a>
 
-<a href="#">Link to Deployed Heroku Application</a>
+<a href="https://floating-ridge-06852.herokuapp.com/">Link to Deployed Heroku Application</a>
